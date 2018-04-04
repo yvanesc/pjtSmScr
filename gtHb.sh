@@ -5,4 +5,5 @@ git status
 echo "------------------------------"
 echo "Comments to add for the commit"
 read cmt
-git commit -am '$cmt'
+echo "$cmt"
+git commit -am "$cmt"
