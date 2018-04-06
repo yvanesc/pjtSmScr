@@ -63,20 +63,19 @@ def convDay(nbDay):
 		return "Sunday" 
 	else:
 		print "nonnn"
-	
+def get_ip_address(ifname):
+	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+	return socket.inet_ntoa(fcntl.ioctl(
+	s.fileno(),
+	0x8915,  # SIOCGIFADDR
+	struct.pack('256s', ifname[:15])
+	)[20:24])
 loopDisplay = 5
 start = time.time()
 while (loopDisplay != 0):
         cls()
         f = urllib2.urlopen('http://api.wunderground.com/api/a71894d18588a38f/geolookup/conditions/q/ch/lausanne.json')
         print ("hello man")
-        def get_ip_address(ifname):
-                s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-                return socket.inet_ntoa(fcntl.ioctl(
-                s.fileno(),
-                0x8915,  # SIOCGIFADDR
-                struct.pack('256s', ifname[:15])
-                )[20:24])
         print(get_ip_address('wlan0'))  # '192.168.0.110'
         print("Version Python : " + sys.version)
         now = datetime.datetime.now()
