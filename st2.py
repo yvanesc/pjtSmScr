@@ -9,13 +9,7 @@ import sys
 import os
 import urllib2
 import json
-import picamera
-#import asciiNbr
-#import asciiTxt
 
-# backslash remove space before & after multiline
-
-#camera = picamera.PiCamera()
 
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
