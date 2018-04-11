@@ -9,13 +9,25 @@ import sys
 import os
 import urllib2
 import json
+import picamera
 #import asciiNbr
 #import asciiTxt
 
 # backslash remove space before & after multiline
 
+#camera = picamera.PiCamera()
+
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
+def convSize(sizeHd):
+	#sizeHd =int(sizeHd)
+	suffixSize=['B','KB','MB','GB','TB']
+	suffixI = 0
+	while sizeHd > 1024 and suffixI < 4:
+		suffixI += 1
+		sizeHd = sizeHd/1024
+	return str(sizeHd) + suffixSize[suffixI]
+
 
 loopDisplay = 5
 start = time.time()
@@ -27,7 +39,7 @@ while (loopDisplay != 0):
                 f = 1
         #print ("hello man")
         #txtTest ="hello man" 
-        #lenTxt = len(txtTest)
+        #lenTxt = len(txtTest)	
         #print (asciiTxt.convTxt("a"))
         #for iTxt in range(lenTxt+1):
                 #print (txtTest[iTxt-1:iTxt]) 
@@ -45,6 +57,8 @@ while (loopDisplay != 0):
         nowYear = datetime.datetime.now()
         nowYear = nowYear.strftime("%Y")
         nbMonth=nowMonth.strftime("%m")
+	nowFuTime = datetime.datetime.now()
+	#camera.capture("image.jpg")#nowFuTime.strftime("%H%M%S"+".jpg")
         if nbMonth == "04":
                 nbMonth="Avril"
         else:
@@ -55,16 +69,22 @@ while (loopDisplay != 0):
         elif dayOfWeek == 1:
                 dayOfWeek = "Mardi"
         print("------------------------")
-        print ("|         "+ nowTime.strftime("%H:%M")+"        |")
+	#color style/color font/background color
+        print ("\x1b[6;30;42m"+"|         "+ nowTime.strftime("%H:%M")+"        |"+"\x1b[0m")
         print("------------------------")
         print(str(dayOfWeek)+ " " + nowDay.strftime("%d")+ " "+nbMonth+"  "+nowYear)# nowMonth.strftime("%m"))
         #print(nbMonth)
-        print("IP :" + get_ip_address('wlan0'))  # '192.168.0.110'
+        print("IP : " + get_ip_address('wlan0'))  # '192.168.0.110'
         print("Vers. Python : " + sys.version[:5])
-        #print ("Current date and time : ")
-        #ok it work
-        #print (now.strftime("%H:%M")
-        #print (now.strftime("%H:%M %d-%m-%Y"))# %H:%M:%S"))
+	print ("OS : " + sys.platform)
+	statvfs=os.statvfs('/')
+	print("Disk size/free : " + convSize(statvfs.f_frsize * statvfs.f_blocks) +" / "+ convSize(statvfs.f_frsize * statvfs.f_bfree))
+	#print("free space : "+convSize(statvfs.f_frsize * statvfs.f_bfree))
+	#print(statvfs.f_frsize * statvfs.f_bavail)
+
+	#print(convSize(statvfs.f_frsize * statvfs.f_bavail))
+	#lSize=os.stat(
+	#print (lSize + bSize + sizeOnDisk)
         if f == 1:
                 print("No weather informations")
         else:
