@@ -21,5 +21,5 @@ image = cam.get_image()
 cam.stop
 
 #save it
-pygame.image.save(windowSurfaceObj,'picture.jpg')
+pygame.image.save(windowSurfaceObj,'picture2.jpg')
 
