@@ -25,8 +25,11 @@ def convSize(sizeHd):
 
 loopDisplay = 5
 start = time.time()
+imgNb=0
 while (loopDisplay != 0):
-        cls()
+	os.system("./picShoot.sh")
+        imgNb+=1
+	cls()
         try:
                 f = urllib2.urlopen('http://api.wunderground.com/api/a71894d18588a38f/geolookup/conditions/q/ch/lausanne.json')
         except:
@@ -70,7 +73,8 @@ while (loopDisplay != 0):
         #print(nbMonth)
         print("IP : " + get_ip_address('wlan0'))  # '192.168.0.110'
         print("Vers. Python : " + sys.version[:5])
-	print ("OS : " + sys.platform)
+	print ("OS : " + sys.platform),
+	print(" / Nb img " + str(imgNb))
 	statvfs=os.statvfs('/')
 	print("Disk size/free : " + convSize(statvfs.f_frsize * statvfs.f_blocks) +" / "+ convSize(statvfs.f_frsize * statvfs.f_bfree))
 	#print("free space : "+convSize(statvfs.f_frsize * statvfs.f_bfree))
@@ -89,6 +93,8 @@ while (loopDisplay != 0):
                 print "%s : %s" % (location, temp_f),
                 print "C"
                 f.close()
+	#run script to take pic
+	#os.system("./picShoot.sh")
         time.sleep(60)
         #refresh display every minutes
         #loopDisplay -= 1
