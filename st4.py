@@ -64,6 +64,7 @@ class GameMenu():
  
 if __name__ == "__main__":
     # Creating the screen
+    print"start st4"
     screen = pygame.display.set_mode((320, 240), 0, 32)
     pygame.mouse.set_visible(False) 
 

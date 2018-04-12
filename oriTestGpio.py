@@ -31,7 +31,6 @@ while True:
 		pygame.draw.line(DISPLAYSURF, BLUE, (10, 200), (50, 240), 10)
 		pygame.draw.line(DISPLAYSURF, BLUE, (50, 200), (10, 240), 10)
 		pygame.display.update()
-
         if (not GPIO.input(22)):
                 print "22 " + "rect"#+ u"\u25A1"
                 pygame.draw.rect(DISPLAYSURF, RED, (10, 70, 40, 40))
