@@ -56,8 +56,9 @@ while True:
         DISPLAYSURF.blit(menuTxtX, (10, 220))
         DISPLAYSURF.blit(menuTxtTri, (10, 150))
         DISPLAYSURF.blit(menuTxtRect, (10, 75))
-        DISPLAYSURF.blit(menuTxtO, (10, 5))
-        DISPLAYSURF.blit(menuTxtUp, (200, 5))
+        DISPLAYSURF.blit(menuTxtO, (10, 3))
+	# button on right side 
+        DISPLAYSURF.blit(menuTxtUp, (200, 3))
         DISPLAYSURF.blit(menuTxtDw, (200, 220))
         pygame.display.flip()
         print "pass"
@@ -66,9 +67,7 @@ while True:
                 #print "5" + "X"
                 pygame.draw.line(DISPLAYSURF, BLUE, (10, 200), (50, 240), 10)
                 pygame.draw.line(DISPLAYSURF, BLUE, (50, 200), (10, 240), 10)
-                pygame.display.update()
-                pygame.quit()
-                sys.exit()
+		pygame.display.update()
         if (not GPIO.input(22)):
                 #print "22 " + "rect"#+ u"\u25A1"
                 pygame.draw.rect(DISPLAYSURF, RED, (10, 70, 40, 40))
@@ -77,6 +76,8 @@ while True:
                 #print "cercle"#"23 " + "O"
                 pygame.draw.circle(DISPLAYSURF, BLUE, (30, 30), 20, 0)
                 pygame.display.update()
+		pygame.quit()
+                sys.exit()
         if (not GPIO.input(24)):
                 #print "24 " + "triangle" #u"\u1403"
                 pygame.draw.polygon(DISPLAYSURF, BLACK, [[30, 140], [10, 180], [50, 180]], 10)
