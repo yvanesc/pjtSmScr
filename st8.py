@@ -60,7 +60,7 @@ while True:
 	# button on right side 
 	width = menuTxtUp.get_rect().width
 	widthScr = DISPLAYSURF.get_rect().width
-	posXup = widthScr - width + marge
+	posXup = widthScr - width -  marge
         DISPLAYSURF.blit(menuTxtUp, (posXup, 2))
 	# length end for text at 212
         DISPLAYSURF.blit(menuTxtDw, (200, 220))
