@@ -5,7 +5,11 @@ import pygame, sys, os
 from pygame.locals import *
 os.putenv('SDL_FBDEV', '/dev/fb1')
 pygame.init()
+<<<<<<< HEAD
 #pygame.mouse.set_visible(False)
+=======
+pygame.mouse.set_visible(False)
+>>>>>>> e0893f05e814efe2fbf8e1628076b842add6e090
 DISPLAYSURF = pygame.display.set_mode((320, 240))
  
 GPIO.setmode(GPIO.BCM)
@@ -23,6 +27,7 @@ WHITE = (255, 255, 255)
 RED   = (255,   0,   0)
 GREEN = (  0, 255,   0)
 BLUE  = (  0,   0, 255)
+<<<<<<< HEAD
 
 # ini font
 font_color=(0, 0, 0)
@@ -78,3 +83,32 @@ while True:
 
     	time.sleep(0.1)
 
+=======
+DISPLAYSURF.fill(WHITE) 
+while True:
+	#DISPLAYSURF.fill(WHITE)
+	if (not GPIO.input(5)):		
+		pygame.draw.line(DISPLAYSURF, BLUE, (10, 200), (50, 240), 10)
+		pygame.draw.line(DISPLAYSURF, BLUE, (50, 200), (10, 240), 10)
+		pygame.display.update()
+    if (not GPIO.input(22)):                
+        pygame.draw.rect(DISPLAYSURF, RED, (10, 70, 40, 40))
+        pygame.display.update()
+    if (not GPIO.input(23)):            
+        pygame.draw.circle(DISPLAYSURF, BLUE, (30, 30), 20, 0)
+        pygame.display.update()
+    if (not GPIO.input(24)):            
+        pygame.draw.polygon(DISPLAYSURF, BLACK, [[30, 140], [10, 180], [50, 180]], 10)
+        pygame.display.update()
+	if (not GPIO.input(4)):            
+        GPIO.output(27,GPIO.HIGH)
+	if (not GPIO.input(17)):                
+		GPIO.output(27,GPIO.LOW)
+                        
+	for event in pygame.event.get():
+           	 if event.type == QUIT:
+                        pygame.quit()
+                        sys.exit()
+
+    time.sleep(0.1)
+>>>>>>> e0893f05e814efe2fbf8e1628076b842add6e090
