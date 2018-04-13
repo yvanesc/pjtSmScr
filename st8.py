@@ -37,7 +37,7 @@ menuRect = "<- rectangle"
 menuO = "<- Cercle"
 menuUp = "vol. up ->"
 menuDw = "vol. down ->"
-
+marge = 5
 DISPLAYSURF.fill(WHITE)
 pygame.display.update()
 GPIO.output(27,GPIO.HIGH)
@@ -53,12 +53,16 @@ while True:
         menuTxtUp= fontSel.render(menuUp, True, font_color)
         menuTxtDw= fontSel.render(menuDw, True, font_color)
         #screen
-        DISPLAYSURF.blit(menuTxtX, (10, 220))
-        DISPLAYSURF.blit(menuTxtTri, (10, 150))
-        DISPLAYSURF.blit(menuTxtRect, (10, 75))
-        DISPLAYSURF.blit(menuTxtO, (10, 3))
+        DISPLAYSURF.blit(menuTxtX, (marge, 220))
+        DISPLAYSURF.blit(menuTxtTri, (marge, 150))
+        DISPLAYSURF.blit(menuTxtRect, (marge, 75))
+        DISPLAYSURF.blit(menuTxtO, (marge, 2))
 	# button on right side 
-        DISPLAYSURF.blit(menuTxtUp, (200, 3))
+	width = menuTxtUp.get_rect().width
+	widthScr = DISPLAYSURF.get_rect().width
+	posXup = widthScr - width + marge
+        DISPLAYSURF.blit(menuTxtUp, (posXup, 2))
+	# length end for text at 212
         DISPLAYSURF.blit(menuTxtDw, (200, 220))
         pygame.display.flip()
         print "pass"
