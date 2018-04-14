@@ -64,7 +64,10 @@ while True:
         DISPLAYSURF.blit(menuTxtUp, (posXup, 2))
 	# length end for text at 212
         DISPLAYSURF.blit(menuTxtDw, (200, 220))
-        pygame.display.flip()
+	#modif 180->160, 10->25, 280->200, 200
+	#modif2 3pos.: 200->180->150
+        pygame.draw.rect(DISPLAYSURF, RED, (160, 25, 150, 190))
+	pygame.display.flip()
         print "pass"
         #pygame.display.update()
         if (not GPIO.input(5)):
