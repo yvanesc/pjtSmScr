@@ -2,6 +2,7 @@ import time
 import RPi.GPIO as GPIO
 import pygame, sys, os
 import iniPi
+import sqlPi
 
 from pygame.locals import *
 os.putenv('SDL_FBDEV', '/dev/fb1')
@@ -17,18 +18,6 @@ GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(27,GPIO.OUT)
-
-# set up the colors
-#BLACK = (  0,   0,   0)
-#WHITE = (255, 255, 255)
-#RED   = (255,   0,   0)
-#GREEN = (  0, 255,   0)
-#BLUE  = (  0,   0, 255)
-
-# ini font
-#font_color=(0, 0, 0)
-#font=None
-#font_size=30
 
 clkX = 0
 clkRect = 0
@@ -50,9 +39,11 @@ while True:
         DISPLAYSURF.fill(iniPi.WHITE)
         #default display
         #fontSel=pygame.font.SysFont(font, font_size)
+        menuTxtRect = fontSel.render(sqlPi.reMenu("name", "rect", str(clkRect), str(clkTri), str(clkX), str(clkUp), str(clkDw)), True, iniPi.font_color)
+
         menuTxtX= fontSel.render(menuX, True, iniPi.font_color)
         menuTxtTri= fontSel.render(menuTri, True, iniPi.font_color)
-        menuTxtRect= fontSel.render(menuRect, True, iniPi.font_color)
+        #menuTxtRect= fontSel.render(menuRect, True, iniPi.font_color)
         menuTxtO= fontSel.render(menuO, True, iniPi.font_color)
         menuTxtUp= fontSel.render(menuUp, True, iniPi.font_color)
         menuTxtDw= fontSel.render(menuDw, True, iniPi.font_color)
@@ -68,9 +59,8 @@ while True:
         DISPLAYSURF.blit(menuTxtUp, (posXup, 2))
 	# length end for text at 212
         DISPLAYSURF.blit(menuTxtDw, (200, 220))
-	#display red rect to be calculate
+        #display red rect to be calculate
         pygame.draw.rect(DISPLAYSURF, iniPi.RED, (160, 25, 150, 190))
-
         pygame.display.flip()
 
         #pygame.display.update()
