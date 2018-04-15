@@ -21,6 +21,9 @@ GPIO.setup(27,GPIO.OUT)
 
 clkX = 0
 clkRect = 0
+clkTri = 0
+clkUp = 0
+clkDw = 0
 
 fontSel=pygame.font.SysFont(iniPi.font, iniPi.font_size)
 #menuTxt= fontSel.render("test one", True, font_color)
@@ -39,7 +42,7 @@ while True:
         DISPLAYSURF.fill(iniPi.WHITE)
         #default display
         #fontSel=pygame.font.SysFont(font, font_size)
-        menuTxtRect = fontSel.render(sqlPi.reMenu("name", "rect", str(clkRect), str(clkTri), str(clkX), str(clkUp), str(clkDw)), True, iniPi.font_color)
+        menuTxtRect = fontSel.render(sqlPi.reqMenu("name", "rect", str(clkRect), str(clkTri), str(clkX), str(clkUp), str(clkDw)), True, iniPi.font_color)
 
         menuTxtX= fontSel.render(menuX, True, iniPi.font_color)
         menuTxtTri= fontSel.render(menuTri, True, iniPi.font_color)
