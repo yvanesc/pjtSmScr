@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 import pygame, sys, os
 import iniPi
 import sqlPi
+import ipPi
 
 from pygame.locals import *
 from iniPi import clkX, clkRect, clkTri, clkUp, clkDw
@@ -28,7 +29,8 @@ pygame.display.update()
 GPIO.output(27,GPIO.HIGH)
 pygame.mouse.set_visible(False)
 while True:
-        DISPLAYSURF.fill(iniPi.WHITE)
+        os.system('clear')
+	DISPLAYSURF.fill(iniPi.WHITE)
         #default display
         #fontSel=pygame.font.SysFont(font, font_size)
 	#menuTxtRect= fontSel.render(menuRect, True, iniPi.font_color)
@@ -65,7 +67,10 @@ while True:
         #pygame.draw.rect(DISPLAYSURF, iniPi.RED, (160, 25, 150, 190)) x, y, width, height
 	# only marge not enough
 	pygame.draw.rect(DISPLAYSURF, iniPi.RED, (widthMax + iniPi.marge +5, 25, 360 - widthMax , 190))
-        pygame.display.flip()
+        # display info in red square
+	infoTxt= fontSel.render("Ip : " + ipPi.get_ip_address('wlan0'), True, iniPi.WHITE)
+	DISPLAYSURF.blit(infoTxt, (widthMax + iniPi.marge +5, 25))
+	pygame.display.flip()
 
         #pygame.display.update()
         if (not GPIO.input(5)):
