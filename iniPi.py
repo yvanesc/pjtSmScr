@@ -21,4 +21,5 @@ posButTri = 150
 posButRect = 75
 posButO = posButUp = 2
 
-
+# button
+clkX = clkRect = clkTri = clkUp = clkDw = 0 

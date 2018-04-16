@@ -5,8 +5,7 @@ import iniPi
 import sqlPi
 
 from pygame.locals import *
-
-os.system('clear')
+from iniPi import clkX, clkRect, clkTri, clkUp, clkDw
 
 os.putenv('SDL_FBDEV', '/dev/fb1')
 pygame.init()
@@ -22,21 +21,8 @@ GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(27,GPIO.OUT)
 
-clkX = 0
-clkRect = 0
-clkTri = 0
-clkUp = 0
-clkDw = 0
-
 fontSel=pygame.font.SysFont(iniPi.font, iniPi.font_size)
-#menuTxt= fontSel.render("test one", True, font_color)
-menuX = "<- X"
-menuTri = "<- triangle"
-menuRect = "<- rectangle"
-menuO = "<- Cercle"
-menuUp = "vol. up ->"
-menuDw = "vol. down ->"
-#marge = 5
+
 DISPLAYSURF.fill(iniPi.WHITE)
 pygame.display.update()
 GPIO.output(27,GPIO.HIGH)
@@ -45,14 +31,21 @@ while True:
         DISPLAYSURF.fill(iniPi.WHITE)
         #default display
         #fontSel=pygame.font.SysFont(font, font_size)
+	#menuTxtRect= fontSel.render(menuRect, True, iniPi.font_color)
         menuTxtRect = fontSel.render(sqlPi.reqMenu("name", "rect", str(clkRect), str(clkTri), str(clkX), str(clkUp), str(clkDw)), True, iniPi.font_color)
-
-        menuTxtX= fontSel.render(menuX, True, iniPi.font_color)
-        menuTxtTri= fontSel.render(menuTri, True, iniPi.font_color)
-        #menuTxtRect= fontSel.render(menuRect, True, iniPi.font_color)
-        menuTxtO= fontSel.render(menuO, True, iniPi.font_color)
-        menuTxtUp= fontSel.render(menuUp, True, iniPi.font_color)
-        menuTxtDw= fontSel.render(menuDw, True, iniPi.font_color)
+	menuTxtX= fontSel.render(sqlPi.reqMenu("name", "croix", str(clkRect), str(clkTri), str(clkX), str(clkUp), str(clkDw)), True, iniPi.font_color)
+        menuTxtTri= fontSel.render(sqlPi.reqMenu("name", "tri", str(clkRect), str(clkTri), str(clkX), str(clkUp), str(clkDw)), True, iniPi.font_color)        
+	# button 1 fct only (shutdown)
+	menuTxtO= fontSel.render("<- ShutDown", True, iniPi.font_color)        
+        menuTxtUp= fontSel.render(sqlPi.reqMenu("name", "up", str(clkRect), str(clkTri), str(clkX), str(clkUp), str(clkDw)), True, iniPi.font_color)
+        menuTxtDw= fontSel.render(sqlPi.reqMenu("name", "down", str(clkRect), str(clkTri), str(clkX), str(clkUp), str(clkDw)), True, iniPi.font_color)
+	#get width from text
+	#width = menuTxtRect.get_rect().width
+	if (menuTxtTri.get_rect().width > menuTxtRect.get_rect().width):
+		widthMax = menuTxtTri.get_rect().width
+	else:
+		widthMax = menuTxtRect.get_rect().width					
+		
         #screen
         DISPLAYSURF.blit(menuTxtX, (iniPi.marge, 220))
         DISPLAYSURF.blit(menuTxtTri, (iniPi.marge, 150))
@@ -64,9 +57,14 @@ while True:
 	posXup = widthScr - width -  iniPi.marge
         DISPLAYSURF.blit(menuTxtUp, (posXup, 2))
 	# length end for text at 212
-        DISPLAYSURF.blit(menuTxtDw, (200, 220))
+	width = menuTxtDw.get_rect().width
+	widthScr = DISPLAYSURF.get_rect().width
+	posXdw = widthScr - width -  iniPi.marge
+        DISPLAYSURF.blit(menuTxtDw, (posXdw, 220))
         #display red rect to be calculate
-        pygame.draw.rect(DISPLAYSURF, iniPi.RED, (160, 25, 150, 190))
+        #pygame.draw.rect(DISPLAYSURF, iniPi.RED, (160, 25, 150, 190)) x, y, width, height
+	# only marge not enough
+	pygame.draw.rect(DISPLAYSURF, iniPi.RED, (widthMax + iniPi.marge +5, 25, 360 - widthMax , 190))
         pygame.display.flip()
 
         #pygame.display.update()
@@ -99,4 +97,4 @@ while True:
                         pygame.quit()
                         sys.exit()
 
-        time.sleep(0.1)
+	time.sleep(0.1)
