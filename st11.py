@@ -4,6 +4,7 @@ import pygame, sys, os
 import iniPi
 import sqlPi
 import ipPi
+import timePi
 
 from pygame.locals import *
 from iniPi import clkX, clkRect, clkTri, clkUp, clkDw
@@ -68,8 +69,15 @@ while True:
 	# only marge not enough
 	pygame.draw.rect(DISPLAYSURF, iniPi.RED, (widthMax + iniPi.marge +5, 25, 360 - widthMax , 190))
         # display info in red square
-	infoTxt= fontSel.render("Ip : " + ipPi.get_ip_address('wlan0'), True, iniPi.WHITE)
+	infoTxt = fontSel.render("Ip wifi: " + ipPi.get_ip_address('wlan0'), True, iniPi.WHITE)
+	# need to add try + except in ipPi
+	#infoTxt2 = fontSel.render("Ip wire: " + ipPi.get_ip_address('eth0'), True, iniPi.WHITE)
+	infoTxt2 = fontSel.render(timePi.timePi + " | "+ timePi.dayOfWeek, True, iniPi.WHITE)
 	DISPLAYSURF.blit(infoTxt, (widthMax + iniPi.marge +5, 25))
+	heightInfoTxt = infoTxt.get_rect().height
+	DISPLAYSURF.blit(infoTxt2, (widthMax + iniPi.marge +5, 25+heightInfoTxt))
+	infoTxt3 = fontSel.render(timePi.nowMonth + " "+ timePi.nbMonth + " " + timePi.nowYear, True, iniPi.WHITE)
+	DISPLAYSURF.blit(infoTxt3, (widthMax + iniPi.marge +5, 25+(heightInfoTxt*2)))
 	pygame.display.flip()
 
         #pygame.display.update()
