@@ -23,3 +23,9 @@ posButO = posButUp = 2
 
 # button
 clkX = clkRect = clkTri = clkUp = clkDw = 0 
+
+# path 4 icon
+pathStart="/home/pi/pjtSmScr/ic32/"
+
+# end of filename
+pathEnd="-4x.png"
