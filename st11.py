@@ -11,6 +11,11 @@ from iniPi import clkX, clkRect, clkTri, clkUp, clkDw
 
 os.putenv('SDL_FBDEV', '/dev/fb1')
 pygame.init()
+# 2 put in iniPi
+icO=pygame.image.load("/home/pi/pjtSmScr/icon/sound.png")#wp/coplandOS.jpg")
+icRect=pygame.image.load("/home/pi/pjtSmScr/icon/cam.png")
+icTri=pygame.image.load("/home/pi/pjtSmScr/icon/usb.png")
+icX=pygame.image.load("/home/pi/pjtSmScr/icon/settings.png")
 #pygame.mouse.set_visible(False)
 DISPLAYSURF = pygame.display.set_mode((320, 240))
 
@@ -29,7 +34,7 @@ DISPLAYSURF.fill(iniPi.WHITE)
 pygame.display.update()
 GPIO.output(27,GPIO.HIGH)
 pygame.mouse.set_visible(False)
-imgButO = pygame.image.load('home/pi/Pictures/trafalgar_law-wallpaper-320x240.jpg')#icon\cam.png')
+#imgButO = pygame.image.load('home/pi/Pictures/trafalgar_law-wallpaper-320x240.jpg')#icon\cam.png')
 while True:
         os.system('clear')
 	DISPLAYSURF.fill(iniPi.WHITE)
@@ -55,7 +60,10 @@ while True:
         DISPLAYSURF.blit(menuTxtTri, (iniPi.marge, 150))
         DISPLAYSURF.blit(menuTxtRect, (iniPi.marge, 75))
         DISPLAYSURF.blit(menuTxtO, (iniPi.marge, 2))
-	DISPLAYSURF.blit(imgButO, (0, 0))
+	DISPLAYSURF.blit(icO, (0, 0))
+	DISPLAYSURF.blit(icRect, (0, 60))
+	DISPLAYSURF.blit(icTri, (0, 120))
+	DISPLAYSURF.blit(icX, (0, 180))
 	# button on right side 
 	width = menuTxtUp.get_rect().width
 	widthScr = DISPLAYSURF.get_rect().width
