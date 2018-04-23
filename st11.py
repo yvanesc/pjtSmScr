@@ -29,6 +29,7 @@ DISPLAYSURF.fill(iniPi.WHITE)
 pygame.display.update()
 GPIO.output(27,GPIO.HIGH)
 pygame.mouse.set_visible(False)
+imgButO = pygame.image.load('home/pi/Pictures/trafalgar_law-wallpaper-320x240.jpg')#icon\cam.png')
 while True:
         os.system('clear')
 	DISPLAYSURF.fill(iniPi.WHITE)
@@ -54,6 +55,7 @@ while True:
         DISPLAYSURF.blit(menuTxtTri, (iniPi.marge, 150))
         DISPLAYSURF.blit(menuTxtRect, (iniPi.marge, 75))
         DISPLAYSURF.blit(menuTxtO, (iniPi.marge, 2))
+	DISPLAYSURF.blit(imgButO, (0, 0))
 	# button on right side 
 	width = menuTxtUp.get_rect().width
 	widthScr = DISPLAYSURF.get_rect().width
@@ -99,11 +101,11 @@ while True:
                 #pygame.display.update()
         if (not GPIO.input(4)):
                 #VOL LOW
-                clkUp+=1
+                clkDown+=1
                 #GPIO.output(27,GPIO.HIGH)
         if (not GPIO.input(17)):
                 #VOL HIGH
-                clkDw+=1
+                clkUp+=1
                 #GPIO.output(27,GPIO.LOW)
         for event in pygame.event.get():
                 if event.type == QUIT:
