@@ -12,10 +12,12 @@ from iniPi import clkX, clkRect, clkTri, clkUp, clkDw
 os.putenv('SDL_FBDEV', '/dev/fb1')
 pygame.init()
 # 2 put in iniPi
-icO=pygame.image.load("/home/pi/pjtSmScr/icon/sound.png")#wp/coplandOS.jpg")
-icRect=pygame.image.load("/home/pi/pjtSmScr/icon/cam.png")
-icTri=pygame.image.load("/home/pi/pjtSmScr/icon/usb.png")
-icX=pygame.image.load("/home/pi/pjtSmScr/icon/settings.png")
+icO=pygame.image.load("/home/pi/pjtSmScr/ic32/power-standby-4x.png")#wp/coplandOS.jpg")
+icRect=pygame.image.load("/home/pi/pjtSmScr/ic32/camera-slr-4x.png")
+icTri=pygame.image.load("/home/pi/pjtSmScr/ic32/transfer-4x.png")
+icX=pygame.image.load("/home/pi/pjtSmScr/ic32/cog-4x.png")
+icUp=pygame.image.load("/home/pi/pjtSmScr/ic32/lightbulb-4x.png")
+icDown=pygame.image.load("/home/pi/pjtSmScr/ic32/menu-4x.png")
 #pygame.mouse.set_visible(False)
 DISPLAYSURF = pygame.display.set_mode((320, 240))
 
@@ -61,9 +63,11 @@ while True:
         DISPLAYSURF.blit(menuTxtRect, (iniPi.marge, 75))
         DISPLAYSURF.blit(menuTxtO, (iniPi.marge, 2))
 	DISPLAYSURF.blit(icO, (0, 0))
-	DISPLAYSURF.blit(icRect, (0, 60))
-	DISPLAYSURF.blit(icTri, (0, 120))
-	DISPLAYSURF.blit(icX, (0, 180))
+	DISPLAYSURF.blit(icRect, (0, 80))
+	DISPLAYSURF.blit(icTri, (0, 140))
+	DISPLAYSURF.blit(icX, (0, 200))
+	DISPLAYSURF.blit(icDown, (288, 208))
+	DISPLAYSURF.blit(icUp, (288, 0))
 	# button on right side 
 	width = menuTxtUp.get_rect().width
 	widthScr = DISPLAYSURF.get_rect().width
