@@ -18,6 +18,7 @@ icTri=pygame.image.load(pathStart+ "transfer" +pathEnd)
 icX=pygame.image.load(pathStart+ "cog" +pathEnd)
 icUp=pygame.image.load(pathStart+ "lightbulb" +pathEnd)
 icDown=pygame.image.load(pathStart+ "menu" +pathEnd)
+rayFace =pygame.image.load("/home/pi/pjtSmScr/icon/raymond.png")
 #pygame.mouse.set_visible(False)
 DISPLAYSURF = pygame.display.set_mode((scrWidth, scrHeigth))
 
@@ -58,6 +59,7 @@ while True:
         DISPLAYSURF.blit(icX, (icXPosX, icXPosY))
         DISPLAYSURF.blit(icDown, (icDownPosX, icDownPosY))
         DISPLAYSURF.blit(icUp, (icUpPosX, icUpPosY))
+        DISPLAYSURF.blit(rayFace, (34, 0))
         
         #display red rect to be calculate
         #pygame.draw.rect(DISPLAYSURF, iniPi.RED, (160, 25, 150, 190)) x, y, width, height
