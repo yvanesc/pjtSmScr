@@ -24,6 +24,18 @@ posButO = posButUp = 2
 # button
 clkX = clkRect = clkTri = clkUp = clkDw = 0 
 
+# screen 2.2 inch 320x240
+# split screen with 20x60 pixel
+# use for icon 32x32 2 blocks (40x60)
+scrWidth = 320
+scrHeigth = 240
+icOPosX = icRectPosX = icTriPosX = icXPosX = 2
+icOPosY = icUpPosY = 5
+icRectPosY = 70
+icTriPosY = 150
+icXPosY = icDownPosY = 205
+icDownPosX = icUpPosX = 280 
+
 # path 4 icon
 pathStart="/home/pi/pjtSmScr/ic32/"
 
