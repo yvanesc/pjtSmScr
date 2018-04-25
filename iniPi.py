@@ -51,4 +51,4 @@ pathEnd="-4x.png"
 # path 4 icon 16x16
 ic16PathS ="/home/pi/pjtSmScr/ic16/"
 # end of filename
-pathEnd="-2x.png"
+ic16PathE="-2x.png"
