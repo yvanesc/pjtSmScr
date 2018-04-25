@@ -7,20 +7,19 @@ import ipPi
 import timePi
 
 from pygame.locals import *
-from iniPi import * #clkX, clkRect, clkTri, clkUp, clkDw, pathStart, pathEnd, scrWidth, scrHeigth, icOPosX, icOPosY, icRectPosX, icRectPosY
+from iniPi import * 
 
 os.putenv('SDL_FBDEV', '/dev/fb1')
 pygame.init()
 # 2 put in iniPi
-icO=pygame.image.load(pathStart+ "power-standby" +pathEnd)#wp/coplandOS.jpg")
-icRect=pygame.image.load(pathStart+ "camera-slr" +pathEnd)
-icTri=pygame.image.load(pathStart+ "transfer" +pathEnd)
-icX=pygame.image.load(pathStart+ "cog" +pathEnd)
-icUp=pygame.image.load(pathStart+ "lightbulb" +pathEnd)
-#icDown=pygame.image.load(pathStart+ "menu" +pathEnd)
-# test small icon 16x16
-icDown=pygame.image.load("/home/pi/pjtSmScr/ic16/menu-2x.png")
+icO=pygame.image.load(ic16PathS+ "power-standby" +ic16PathE)
+icRect=pygame.image.load(ic16PathS+ "camera-slr" +ic16PathE)
+icTri=pygame.image.load(ic16PathS+ "transfer" +ic16PathE)
+icX=pygame.image.load(ic16PathS+ "cog" +ic16PathE)
+icUp=pygame.image.load(ic16PathS+ "lightbulb" +ic16PathE)
+icDown=pygame.image.load(ic16PathS+ "menu" +ic16PathE)
 rayFace =pygame.image.load("/home/pi/pjtSmScr/icon/raymond.png")
+splashScr =pygame.image.load("/home/pi/pjtSmScr/wp/coplandOS.jpg")
 #pygame.mouse.set_visible(False)
 DISPLAYSURF = pygame.display.set_mode((scrWidth, scrHeigth))
 
@@ -35,22 +34,26 @@ GPIO.setup(27,GPIO.OUT)
 
 fontSel=pygame.font.SysFont(iniPi.font, iniPi.font_size)
 
-DISPLAYSURF.fill(iniPi.WHITE)
-pygame.display.update()
+# DISPLAYSURF.fill(iniPi.WHITE)
+# pygame.display.update()
 GPIO.output(27,GPIO.HIGH)
 pygame.mouse.set_visible(False)
-
+DISPLAYSURF.blit(splashScr, (0, 0))
+pygame.display.update()
+time.sleep(3)
 while True:
         os.system('clear')
+        #DISPLAYSURF.blit(splashScr, (0, 0))
+	#pygame.display.update()
+        #time.sleep(30)
         DISPLAYSURF.fill(iniPi.WHITE)
-        #default display
-        #fontSel=pygame.font.SysFont(font, font_size)
+        pygame.display.update()
+	#default display
         #menuTxtRect= fontSel.render(menuRect, True, iniPi.font_color)
         menuTxtRect = fontSel.render(sqlPi.reqMenu("name", "rect", str(clkRect), str(clkTri), str(clkX), str(clkUp), str(clkDw)), True, iniPi.font_color)
         menuTxtX= fontSel.render(sqlPi.reqMenu("name", "croix", str(clkRect), str(clkTri), str(clkX), str(clkUp), str(clkDw)), True, iniPi.font_color)
         menuTxtTri= fontSel.render(sqlPi.reqMenu("name", "tri", str(clkRect), str(clkTri), str(clkX), str(clkUp), str(clkDw)), True, iniPi.font_color)        
         # button 1 fct only (shutdown)
-        menuTxtO= fontSel.render("<- ShutDown", True, iniPi.font_color)        
         menuTxtUp= fontSel.render(sqlPi.reqMenu("name", "up", str(clkRect), str(clkTri), str(clkX), str(clkUp), str(clkDw)), True, iniPi.font_color)
         menuTxtDw= fontSel.render(sqlPi.reqMenu("name", "down", str(clkRect), str(clkTri), str(clkX), str(clkUp), str(clkDw)), True, iniPi.font_color)
 
@@ -63,23 +66,8 @@ while True:
         DISPLAYSURF.blit(icUp, (icUpPosX, icUpPosY))
         DISPLAYSURF.blit(rayFace, (34, 0))
         
-        #display red rect to be calculate
-        #pygame.draw.rect(DISPLAYSURF, iniPi.RED, (160, 25, 150, 190)) x, y, width, height
-        # only marge not enough
-        #pygame.draw.rect(DISPLAYSURF, iniPi.RED, (widthMax + iniPi.marge +5, 25, 360 - widthMax , 190))
-        # display info in red square
-        #infoTxt = fontSel.render("Ip wifi: " + ipPi.get_ip_address('wlan0'), True, iniPi.WHITE)
-        # need to add try + except in ipPi
-        #infoTxt2 = fontSel.render("Ip wire: " + ipPi.get_ip_address('eth0'), True, iniPi.WHITE)
-        #infoTxt2 = fontSel.render(timePi.timePi + " | "+ timePi.dayOfWeek, True, iniPi.WHITE)
-        #DISPLAYSURF.blit(infoTxt, (widthMax + iniPi.marge +5, 25))
-        #heightInfoTxt = infoTxt.get_rect().height
-        #DISPLAYSURF.blit(infoTxt2, (widthMax + iniPi.marge +5, 25+heightInfoTxt))
-        #infoTxt3 = fontSel.render(timePi.nowMonth + " "+ timePi.nbMonth + " " + timePi.nowYear, True, iniPi.WHITE)
-        #DISPLAYSURF.blit(infoTxt3, (widthMax + iniPi.marge +5, 25+(heightInfoTxt*2)))
         pygame.display.flip()
 
-        #pygame.display.update()
         if (not GPIO.input(5)):
                 # X
                 clkX+=1
