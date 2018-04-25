@@ -29,19 +29,35 @@ clkX = clkRect = clkTri = clkUp = clkDw = 0
 # use for icon 32x32 2 blocks (40x60)
 scrWidth = 320
 scrHeigth = 240
+<<<<<<< HEAD
 """
+=======
+""" position for icon 32x32
+icOPosX = icRectPosX = icTriPosX = icXPosX = 2
+icOPosY = icUpPosY = 5
+icRectPosY = 70
+icTriPosY = 150
+icXPosY = icDownPosY = 205
+icDownPosX = icUpPosX = 280
+"""
+# position 4 icon 16x16
+>>>>>>> f76c94c64486b786dd5b08d7a0a73fb727bc63d1
 icOPosX = icRectPosX = icTriPosX = icXPosX = 2
 icOPosY = icUpPosY = 5
 icRectPosY = 70
 icTriPosY = 150
 icXPosY = icDownPosY = 205
 icDownPosX = icUpPosX = 280 
+<<<<<<< HEAD
 """
 # path 4 icon
+=======
+# path 4 icon 32x32
+>>>>>>> f76c94c64486b786dd5b08d7a0a73fb727bc63d1
 pathStart="/home/pi/pjtSmScr/ic32/"
-
 # end of filename
 pathEnd="-4x.png"
+<<<<<<< HEAD
 
 # position 4 icon 16x16
 
@@ -57,6 +73,8 @@ pathStart="/home/pi/pjtSmScr/ic32/"
 # end of filename
 pathEnd="-4x.png"
 
+=======
+>>>>>>> f76c94c64486b786dd5b08d7a0a73fb727bc63d1
 # path 4 icon 16x16
 ic16PathS ="/home/pi/pjtSmScr/ic16/"
 # end of filename
