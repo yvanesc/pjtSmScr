@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#import urllib2
+import urllib#2
 from urllib.request import urlopen
 import simplejson as json
 
